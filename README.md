@@ -1,4 +1,4 @@
-# tm1637
+# TM1637
 
 1637
 
@@ -12,5 +12,5 @@ MIT
 (The metadata above is needed for package search.)
 
 ```package
-tm1637=github:gchen1996/pxt-tm1637
+TM1637=github:gchen1996/pxt-tm1637
 ```
