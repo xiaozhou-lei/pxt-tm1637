@@ -1,0 +1,15 @@
+{
+    "name": "1637数码管",
+    "version": "1.0.0",
+    "description": "makecode LED Digit Display (TM1637) package for micro:bit",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+		"_locales/zh/TM1637-strings.json"
+    ],
+    "public": true
+}
