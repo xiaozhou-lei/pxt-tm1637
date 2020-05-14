@@ -221,25 +221,27 @@ namespace TM1637 {
             this._write_data_cmd();
             this._write_dsp_ctrl();
         }
+		
+		/**
+		 * create a TM1637 object.
+		 * @param clk the CLK pin for TM1637, eg: DigitalPin.P1
+		 * @param dio the DIO pin for TM1637, eg: DigitalPin.P2
+		 * @param intensity the brightness of the LED, eg: 7
+		 * @param count the count of the LED, eg: 4
+		 */
+		//% weight=200 blockGap=8
+		//% blockId="TM1637_create" block="CLK %clk|DIO %dio|intensity %intensity|LED count %count"
+		export function create(clk: DigitalPin, dio: DigitalPin, intensity: number, count: number): TM1637LEDs {
+			let tm = new TM1637LEDs();
+			tm.clk = clk;
+			tm.dio = dio;
+			if ((count < 1) || (count > 5)) count = 4;
+			tm.count = count;
+			tm.brightness = intensity;
+			tm.init();
+			return tm;
+		}
     }
 
-    /**
-     * create a TM1637 object.
-     * @param clk the CLK pin for TM1637, eg: DigitalPin.P1
-     * @param dio the DIO pin for TM1637, eg: DigitalPin.P2
-     * @param intensity the brightness of the LED, eg: 7
-     * @param count the count of the LED, eg: 4
-     */
-    //% weight=200 blockGap=8
-    //% blockId="TM1637_create" block="CLK %clk|DIO %dio|intensity %intensity|LED count %count"
-    export function create(clk: DigitalPin, dio: DigitalPin, intensity: number, count: number): TM1637LEDs {
-        let tm = new TM1637LEDs();
-        tm.clk = clk;
-        tm.dio = dio;
-        if ((count < 1) || (count > 5)) count = 4;
-        tm.count = count;
-        tm.brightness = intensity;
-        tm.init();
-        return tm;
-    }
+
 }
