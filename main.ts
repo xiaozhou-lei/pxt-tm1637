@@ -1,10 +1,4 @@
 /**
-* makecode Four Digit Display (TM1637) Package.
-* From microbit/micropython Chinese community.
-* http://www.micropython.org.cn
-*/
-
-/**
  * Four Digit Display
  */
 //% weight=100 color=#50A820 icon="8"
@@ -119,16 +113,15 @@ namespace TM1637 {
          * show a number in given position. 
          * @param num number will show, eg: 5
          * @param bit the position of the LED, eg: 0
-         
-        //% blockId="TM1637_showbit" block="%tm|show digit %num |at %bit"
+         */
+        //% blockId="TM1637_showbit" block="%tm|show digit %num |at %bit" advanced=true
         //% weight=90 blockGap=8
         //% parts="TM1637"
         showbit(num: number = 5, bit: number = 0) {
             this.buf[bit % this.count] = _SEGMENTS[num % 16]
             this._dat(bit, _SEGMENTS[num % 16])
         }
-		**/
-		
+
         /**
           * show a number. 
           * @param num is a number, eg: 0
@@ -151,8 +144,8 @@ namespace TM1637 {
         /**
           * show a hex number. 
           * @param num is a hex number, eg: 0
-          
-        //% blockId="TM1637_showhex" block="%tm|show hex number %num"
+          */
+        //% blockId="TM1637_showhex" block="%tm|show hex number %num" advanced=true
         //% weight=90 blockGap=8
         //% parts="TM1637"
         showHex(num: number) {
@@ -166,15 +159,13 @@ namespace TM1637 {
             this.showbit((num >> 4) % 16, 2)
             this.showbit((num >> 8) % 16, 1)
         }
-		**/
-		
-		
+
         /**
          * show or hide dot point. 
          * @param bit is the position, eg: 1
          * @param show is show/hide dp, eg: true
-         
-        //% blockId="TM1637_showDP" block="%tm|DotPoint at %bit|show %show"
+         */
+        //% blockId="TM1637_showDP" block="%tm|DotPoint at %bit|show %show" advanced=true
         //% weight=70 blockGap=8
         //% parts="TM1637"
         showDP(bit: number = 1, show: boolean = true) {
@@ -182,9 +173,7 @@ namespace TM1637 {
             if (show) this._dat(bit, this.buf[bit] | 0x80)
             else this._dat(bit, this.buf[bit] & 0x7F)
         }
-		**/
-		
-		
+
         /**
          * clear LED. 
          */
@@ -221,26 +210,25 @@ namespace TM1637 {
             this._write_data_cmd();
             this._write_dsp_ctrl();
         }
-		
-	}
-	/**
-	 * create a TM1637 object.
-	 * @param clk the CLK pin for TM1637, eg: DigitalPin.P1
-	 * @param dio the DIO pin for TM1637, eg: DigitalPin.P2
-	 * @param intensity the brightness of the LED, eg: 7
-	 * @param count the count of the LED, eg: 4
-	 */
-	//% weight=200 blockGap=8
-	//% blockId="TM1637_create" block="CLK %clk|DIO %dio|intensity %intensity|LED count %count"
-	export function create(clk: DigitalPin, dio: DigitalPin, intensity: number, count: number): TM1637LEDs {
-		let tm = new TM1637LEDs();
-		tm.clk = clk;
-		tm.dio = dio;
-		if ((count < 1) || (count > 5)) count = 4;
-		tm.count = count;
-		tm.brightness = intensity;
-		tm.init();
-		return tm;
+    }
+
+    /**
+     * create a TM1637 object.
+     * @param clk the CLK pin for TM1637, eg: DigitalPin.P1
+     * @param dio the DIO pin for TM1637, eg: DigitalPin.P2
+     * @param intensity the brightness of the LED, eg: 7
+     * @param count the count of the LED, eg: 4
+     */
+    //% weight=200 blockGap=8
+    //% blockId="TM1637_create" block="CLK %clk|DIO %dio|intensity %intensity|LED count %count"
+    export function create(clk: DigitalPin, dio: DigitalPin, intensity: number, count: number): TM1637LEDs {
+        let tm = new TM1637LEDs();
+        tm.clk = clk;
+        tm.dio = dio;
+        if ((count < 1) || (count > 5)) count = 4;
+        tm.count = count;
+        tm.brightness = intensity;
+        tm.init();
+        return tm;
+    }
 }
-
-
