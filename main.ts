@@ -91,7 +91,7 @@ namespace TM1637 {
         //% blockId="TM1637_set_intensity" block="%tm|set intensity %val"
         //% weight=50 blockGap=8
         //% parts="TM1637"
-        intensity(val: number = 7) {
+        export function intensity(val: number = 7) {
             if (val < 1) {
                 this.off();
                 return;
@@ -136,7 +136,7 @@ namespace TM1637 {
         //% blockId="TM1637_shownum" block="%tm|show number %num"
         //% weight=91 blockGap=8
         //% parts="TM1637"
-        showNumber(num: number) {
+        export function showNumber(num: number) {
             if (num < 0) {
                 this._dat(0, 0x40) // '-'
                 num = -num
@@ -191,7 +191,7 @@ namespace TM1637 {
         //% blockId="TM1637_clear" block="clear %tm"
         //% weight=80 blockGap=8
         //% parts="TM1637"
-        clear() {
+        export function clear() {
             for (let i = 0; i < this.count; i++) {
                 this._dat(i, 0)
                 this.buf[i] = 0
@@ -204,7 +204,7 @@ namespace TM1637 {
         //% blockId="TM1637_on" block="turn on %tm"
         //% weight=86 blockGap=8
         //% parts="TM1637"
-        on() {
+        export function on() {
             this._ON = 8;
             this._write_data_cmd();
             this._write_dsp_ctrl();
@@ -216,7 +216,7 @@ namespace TM1637 {
         //% blockId="TM1637_off" block="turn off %tm"
         //% weight=85 blockGap=8
         //% parts="TM1637"
-        off() {
+        export function off() {
             this._ON = 0;
             this._write_data_cmd();
             this._write_dsp_ctrl();
